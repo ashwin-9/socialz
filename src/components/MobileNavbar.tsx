@@ -1,5 +1,5 @@
 "use client"
-import { SignInButton, SignOutButton, useAuth } from "@clerk/nextjs";
+import { SignInButton, SignOutButton, useAuth, useUser } from "@clerk/nextjs";
 import { useTheme } from "next-themes";
 import { useState } from "react"
 import { Button } from "./ui/button";
@@ -11,6 +11,7 @@ const MobileNavbar = () => {
     const [showMobileMenu, setShowMobileMenu] = useState(false);
     const {isSignedIn} = useAuth();
     const {theme, setTheme} = useTheme();
+    const {user: currentUser} = useUser();
 
     return (
         <div className="flex md:hidden items-center space-x-2">
@@ -52,7 +53,7 @@ const MobileNavbar = () => {
                                     </Link>
                                 </Button>
                                 <Button variant="ghost" className="flex items-center gap-3 justify-start" asChild>
-                                    <Link href="/profile">
+                                    <Link href={`/profile/${currentUser?.username ?? currentUser?.emailAddresses[0].emailAddress.split("@")[0]}`}>
                                         <UserIcon className="w-4 h-4" />
                                         Profile
                                     </Link>
