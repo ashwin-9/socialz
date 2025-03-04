@@ -1,36 +1,127 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Socialz - Modern Social Media Web App
 
-## Getting Started
+## Description
+Socialz is a modern social media web application built with Next.js 14 (App Router), leveraging a robust tech stack to provide a seamless and engaging user experience.
 
-First, run the development server:
+[Live Demo](https://socialz-silk.vercel.app/)
 
+## Table of Contents
+- [Features](#features)
+- [Prerequisites](#prerequisites)
+- [Installation](#installation)
+- [Environment Variables](#environment-variables)
+- [Running the Application](#running-the-application)
+- [Project Structure](#project-structure)
+- [Technologies Used](#technologies-used)
+- [Contributing](#contributing)
+
+## Features
+- Full-stack application built with Next.js 14 (App Router)
+- Server Components, Layouts, Route Handlers, and Server Actions.
+- Efficient data fetching, caching, and revalidation.
+- Dynamic and static routes.
+- Styled with Tailwind CSS and Shadcn UI components.
+- Secure user authentication and authorization using Clerk.
+- File uploads managed by UploadThing.
+- Database integration with Prisma ORM.
+- Optimistic updates for a smooth user experience.
+
+## Prerequisites
+- Node.js (v18.0.0 or higher)
+- PostgreSQL
+- npm
+
+## Installation
+
+### Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/ashwin-9/socialz
+cd socialz
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Install backend dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Install frontend dependencies
+```bash
+cd frontend
+npm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Environment Variables
+Create a `.env` file in the root directory with the following variables:
 
-## Learn More
+```
+DATABASE_URL=your_postgresql_connection_string
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_clerk_publishable_key
+CLERK_SECRET_KEY=your_clerk_secret_key
+UPLOADTHING_SECRET=your_uploadthing_secret
+UPLOADTHING_APP_ID=your_uploadthing_app_id
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Running the Application
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Run Prisma migrations
+```bash
+npx prisma migrate dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Start the development server
+```bash
+npm run dev
+```
 
-## Deploy on Vercel
+The application will be available at `http://localhost:3000`
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Project Structure
+```
+├── public/                     # Static assets
+├── prisma/
+│   └── schema.prisma           # Database schema
+├── src/
+│   ├── actions/                # Server Actions
+│   ├── app/                    # Next.js App Router directory
+│   │   ├── api/
+│   │   │   └── uploadthing/    # UploadThing API routes
+│   │   ├── notifications/
+│   │   │   └── page.tsx        # Notifications page
+│   │   ├── profile/
+│   │   │   └── page.tsx        # Profile page
+│   │   ├── globals.css         # Global styles
+│   │   ├── layout.tsx          # Root layout
+│   │   └── page.tsx            # Home page
+│   ├── components/             # Reusable React components
+│   │   └── ui/                 # Shadcn UI components
+│   ├── lib/                    # Utility functions and libraries
+│   └── middleware.ts           # Middleware configuration for Clerk
+├── package.json                # Project dependencies
+├── README.md                   # Project documentation
+├── tailwind.config.ts          # Tailwind CSS configuration
+└── tsconfig.json               # TypeScript configuration
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Deployment
+The application is deployed on Vercel. Follow these steps to deploy:
+
+1. Link your GitHub repository
+2. Configure environment variables
+3. Deploy and monitor the build process
+
+## Technologies Used
+- Next.js 14
+- TypeScript
+- PostgreSQL
+- Prisma
+- Clerk
+- Tailwind CSS
+- Shadcn UI
+- UploadThing
+
+## Contributing
+1. Fork the repository
+2. Create a new branch (`git checkout -b feature/improvement`)
+3. Commit your changes (`git commit -am 'Add new feature'`)
+4. Push to the branch (`git push origin feature/improvement`)
+5. Create a Pull Request
